@@ -26,7 +26,7 @@ Please cite our paper if you find it useful for your research.
 We use two different split of KITTI 2015, **kitti** and **eigen**, for both training and testing. For additional testing, we test on the validation set of KITTI 2012. You can find them in the [filenames](utils/filenames) folder.
 * Download the raw data of [KITTI Dataset](http://www.cvlibs.net/datasets/kitti/raw_data.php). You can follow the instruction of [monodepth](https://github.com/mrharicot/monodepth)
 
-## Installtion
+## Installation
 * This code was developed using Python 3.6 & PyTorch 0.3.1 & CUDA 9.0.
 * Clone this repo
 ```shell
