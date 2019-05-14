@@ -24,7 +24,11 @@ Please cite our paper if you find it useful for your research.
 ## KITTI Dataset
 * Our model requires rectified stereo pairs with different timestamps from KITTI for training. \
 We use two different split of KITTI 2015, **kitti** and **eigen**, for both training and testing. For additional testing, we test on the validation set of KITTI 2012. You can find them in the [filenames](utils/filenames) folder.
-* Download the raw data of [KITTI Dataset](http://www.cvlibs.net/datasets/kitti/raw_data.php). You can follow the instruction of [monodepth](https://github.com/mrharicot/monodepth)
+* Download the raw data of [KITTI Dataset](http://www.cvlibs.net/datasets/kitti/raw_data.php). This dataset is for training and eigen split evaluation.
+```
+wget -i utils/kitti_archives_to_download.txt -P ~/dataset/
+```
+* Download [KITTI 2015 scene flow dataset](http://www.cvlibs.net/datasets/kitti/eval_scene_flow.php) and saved in KITTI_PATH. This dataset is for optical flow and kitti split evaluation.
 
 ## Installation
 * This code was developed using Python 3.6 & PyTorch 0.3.1 & CUDA 9.0.
@@ -48,13 +52,13 @@ The `--model_name` flag allows you to choose which model you want to train on. W
 We use the validation set of KITTI 2015 as example. The ground truth of optical flow includes occluded area.
 * Test on optical flow
 ```shell
-python test_flow.py --data_path ~/dataset/
+python test_flow.py --data_path KITTI_PATH
                     --filenames_file ./utils/filenames/kitti_flow_val_files_occ_200.txt
                     --checkpoint_path YOUR_CHECKPOINT_PATH/TRAINED_MODEL_NAME
 ```
 * Test on stereo matching
 ```shell
-python test_stereo.py --data_path ~/dataset/
+python test_stereo.py --data_path KITTI_PATH
                     --filenames_file ./utils/filenames/kitti_stereo_2015_test_files.txt
                     --checkpoint_path YOUR_CHECKPOINT_PATH/TRAINED_MODEL_NAME
 ```
