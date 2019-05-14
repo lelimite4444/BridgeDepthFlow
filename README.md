@@ -19,7 +19,7 @@ Please cite our paper if you find it useful for your research.
 
 ## Example Results
 
-![](figure/quantitative.png)
+![](figure/qualitative.png)
 
 ## KITTI Dataset
 * Our model requires rectified stereo pairs with different timestamps from KITTI for training. \
