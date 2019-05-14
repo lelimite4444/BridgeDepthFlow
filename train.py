@@ -17,7 +17,6 @@ from models.PWC_net import *
 from models.PWC_net import PWCDCNet
 from utils.scene_dataloader import *
 from utils.utils import *
-from utils.evaluate_utils import *
 from models.networks.submodules import *
 from models.networks.resample2d_package.modules.resample2d import Resample2d
 
