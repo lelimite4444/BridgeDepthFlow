@@ -14,8 +14,6 @@ import matplotlib.pyplot as plt
 import cv2
 
 def get_kitti_cycle_data(file_path_train, path):
-    #path = '/data/hylai_model/my/output/folder/'
-    #file_path_train = '/home/eva/monodepth/utils/filenames/kitti_train_files_png_4frames.txt'
     f_train = open(file_path_train)
     former_left_image_train = list()
     latter_left_image_train = list()
@@ -30,9 +28,18 @@ def get_kitti_cycle_data(file_path_train, path):
         
     return former_left_image_train, latter_left_image_train, former_right_image_train, latter_right_image_train
 
+def get_data(file_path_test, path):
+    f_test = open(file_path_test)
+    left_image_test = list()
+    right_image_test = list()
+
+    for line in f_test:
+        left_image_test.append(path+line.split()[0])
+        right_image_test.append(path+line.split()[1])
+        
+    return left_image_test, right_image_test
+
 def get_flow_data(file_path_test, path):
-    #path = '/data/hylai_model/dataset/kitti/'
-    #file_path_test = '/home/eva/monodepth/utils/filenames/kitti_flow_val_files_occ_200.txt'
     f_test = open(file_path_test)
     flow_test = list()
     former_image_test = list()
@@ -139,20 +146,23 @@ class myImageFolder(data.Dataset):
         left_image = process(left_image)
         right_image = process(right_image)
         
-        flow = self.flow[index]
-        flow_image = cv2.imread(flow, -1)
-        h, w, _ = flow_image.shape
-        flo_img = flow_image[:,:,2:0:-1].astype(np.float32)
-        invalid = (flow_image[:,:,0] == 0)
-            
-        flo_img = (flo_img - 32768) / 64
-        flo_img[np.abs(flo_img) < 1e-10] = 1e-10
-        flo_img[invalid, :] = 0
-            
-        f = torch.from_numpy(flo_img.transpose((2,0,1)))
-        mask = torch.from_numpy((flow_image[:,:,0] == 1).astype(np.float32)).type(torch.FloatTensor)
-            
-        return left_image, right_image, f.type(torch.FloatTensor), mask, h, w
+        if self.flow is not None:
+            flow = self.flow[index]
+            flow_image = cv2.imread(flow, -1)
+            h, w, _ = flow_image.shape
+            flo_img = flow_image[:,:,2:0:-1].astype(np.float32)
+            invalid = (flow_image[:,:,0] == 0)
+
+            flo_img = (flo_img - 32768) / 64
+            flo_img[np.abs(flo_img) < 1e-10] = 1e-10
+            flo_img[invalid, :] = 0
+
+            f = torch.from_numpy(flo_img.transpose((2,0,1)))
+            mask = torch.from_numpy((flow_image[:,:,0] == 1).astype(np.float32)).type(torch.FloatTensor)
+
+            return left_image, right_image, f.type(torch.FloatTensor), mask, h, w
+        
+        return left_image, right_image
     
     def __len__(self):
         return len(self.left)
