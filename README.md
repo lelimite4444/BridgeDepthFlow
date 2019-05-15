@@ -1,11 +1,10 @@
 # Bridging Stereo Matching and Optical Flow via Spatiotemporal Correspondence
-PyTorch implementaton of the following paper:
+PyTorch implementaton of the following paper. In this paper, we propose a unified model for unsupervised stereo matching and optical flow estimation using a single neural network.
+
 # Paper
 [Bridging Stereo Matching and Optical Flow via Spatiotemporal Correspondence](https://people.cs.nctu.edu.tw/~walon/publications/lai2019cvpr.pdf) <br />
 [Hsueh-Ying Lai](), [Yi-Hsuan Tsai](https://sites.google.com/site/yihsuantsai/home), [Wei-Chen Chiu](https://walonchiu.github.io) <br />
 IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2019 (**poster**).
-
-In this paper we propose a unified model for the unsupervised stereo matching and optical flow estimation using single convolutional neural network.
 
 Please cite our paper if you find it useful for your research.
 
