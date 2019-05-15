@@ -29,6 +29,11 @@ We use two different split of KITTI 2015, **kitti** and **eigen**, for both trai
 wget -i utils/kitti_archives_to_download.txt -P ~/dataset/
 ```
 * Download [KITTI 2015 scene flow dataset](http://www.cvlibs.net/datasets/kitti/eval_scene_flow.php) and saved in KITTI_PATH. This dataset is for optical flow and kitti split evaluation.
+```shell
+KITTI_PATH/
+         |--training/
+         |--testing/
+```
 
 ## Installation
 * This code was developed using Python 3.6 & PyTorch 0.3.1 & CUDA 9.0.
