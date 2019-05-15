@@ -4,7 +4,7 @@ PyTorch implementaton of the following paper. In this paper, we propose a unifie
 # Paper
 [Bridging Stereo Matching and Optical Flow via Spatiotemporal Correspondence](https://people.cs.nctu.edu.tw/~walon/publications/lai2019cvpr.pdf) <br />
 [Hsueh-Ying Lai](), [Yi-Hsuan Tsai](https://sites.google.com/site/yihsuantsai/home), [Wei-Chen Chiu](https://walonchiu.github.io) <br />
-IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2019 (**poster**).
+IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2019.
 
 Please cite our paper if you find it useful for your research.
 
