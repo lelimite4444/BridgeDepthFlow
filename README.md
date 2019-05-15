@@ -28,7 +28,7 @@ We use two different splits of KITTI 2015, **kitti** and **eigen**, for both tra
 ```
 wget -i utils/kitti_archives_to_download.txt -P ~/dataset/
 ```
-* Download [KITTI 2015 scene flow dataset](http://www.cvlibs.net/datasets/kitti/eval_scene_flow.php) and saved in KITTI_PATH. This dataset is for optical flow and kitti split evaluation.
+* Download [KITTI 2015 scene flow dataset](http://www.cvlibs.net/datasets/kitti/eval_scene_flow.php) and save it in KITTI_PATH. This dataset is for optical flow and kitti split evaluation.
 ```shell
 KITTI_PATH/
          |--training/
