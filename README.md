@@ -23,7 +23,7 @@ Please cite our paper if you find it useful for your research.
 
 ## KITTI Dataset
 * Our model requires rectified stereo pairs with different timestamps from KITTI for training. \
-We use two different split of KITTI 2015, **kitti** and **eigen**, for both training and testing. For additional testing, we test on the validation set of KITTI 2012. You can find them in the [filenames](utils/filenames) folder.
+We use two different splits of KITTI 2015, **kitti** and **eigen**, for both training and testing. For additional testing, we test on the validation set of KITTI 2012. You can find them in the [filenames](utils/filenames) folder.
 * Download the raw data of [KITTI Dataset](http://www.cvlibs.net/datasets/kitti/raw_data.php). This dataset is for training and eigen split evaluation.
 ```
 wget -i utils/kitti_archives_to_download.txt -P ~/dataset/
