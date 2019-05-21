@@ -24,7 +24,6 @@ def get_args():
     parser = argparse.ArgumentParser()
     
     parser.add_argument('--model_name',                type=str,   help='model name', default='monodepth')
-    parser.add_argument('--dataset',                   type=str,   help='dataset to train on kitti or eigen', default='kitti')
     parser.add_argument('--data_path',                 type=str,   help='path to the data', required=True)
     parser.add_argument('--filenames_file',            type=str,   help='path to the filenames text file', required=True)
     parser.add_argument('--input_height',              type=int,   help='input height', default=256)
@@ -35,7 +34,6 @@ def get_args():
     parser.add_argument('--lr_loss_weight',            type=float, help='left-right consistency weight', default=0.5)
     parser.add_argument('--alpha_image_loss',          type=float, help='weight between SSIM and L1 in the image loss', default=0.85)
     parser.add_argument('--disp_gradient_loss_weight', type=float, help='disparity smoothness weigth', default=0.1)
-    parser.add_argument('--num_gpus',                  type=int,   help='number of GPUs to use for training', default=1)
     parser.add_argument('--num_threads',               type=int,   help='number of threads to use for data loading', default=8)
     parser.add_argument('--checkpoint_path',           type=str,   help='path to a specific checkpoint to load', default='')
     parser.add_argument('--type_of_2warp',             type=int,   help='2warp type', default=0)
