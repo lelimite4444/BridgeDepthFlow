@@ -5,9 +5,9 @@ from torch.nn import init
 import math
 import numpy as np
 
-from correlation_package.modules.correlation import Correlation
+from .correlation_package.correlation import Correlation
 
-from submodules import *
+from .submodules import *
 'Parameter count , 39,175,298 '
 
 class FlowNetC(nn.Module):
@@ -58,13 +58,13 @@ class FlowNetC(nn.Module):
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
                 if m.bias is not None:
-                    init.uniform(m.bias)
-                init.xavier_uniform(m.weight)
+                    init.uniform_(m.bias)
+                init.xavier_uniform_(m.weight)
 
             if isinstance(m, nn.ConvTranspose2d):
                 if m.bias is not None:
-                    init.uniform(m.bias)
-                init.xavier_uniform(m.weight)
+                    init.uniform_(m.bias)
+                init.xavier_uniform_(m.weight)
                 # init_deconv_bilinear(m.weight)
         self.upsample1 = nn.Upsample(scale_factor=4, mode='bilinear')
 
