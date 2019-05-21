@@ -17,6 +17,7 @@ from models.PWC_net import *
 from models.PWC_net import PWCDCNet
 from utils.scene_dataloader import *
 from utils.utils import *
+torch.cuda.set_device(3)
 
 def get_args():
     parser = argparse.ArgumentParser()
