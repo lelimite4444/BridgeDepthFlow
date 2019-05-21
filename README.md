@@ -36,7 +36,8 @@ KITTI_PATH/
 ```
 
 ## Installation
-* This code was developed using Python 3.6 & PyTorch 0.3.1 & CUDA 9.0.
+* This code was developed using Python 3.7 & PyTorch 1.0.0 & CUDA 8.0.
+* Other requirements: cv2, matplotlib
 * Clone this repo
 ```shell
 git clone https://github.com/lelimite4444/BridgeDepthFlow
