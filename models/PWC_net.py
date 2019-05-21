@@ -17,7 +17,7 @@ from PIL import Image
 os.environ['TF_CPP_MIN_LOG_LEVEL']='1'
 
 from .networks.submodules import *
-from .networks.correlation_package.modules.correlation import Correlation
+from .networks.correlation_package.correlation import Correlation
 
 __all__ = [
     'pwc_dc_net', 'pwc_dc_net_old'
@@ -127,7 +127,7 @@ class PWCDCNet(nn.Module):
 
         for m in self.modules():
             if isinstance(m, nn.Conv2d) or isinstance(m, nn.ConvTranspose2d):
-                nn.init.kaiming_normal(m.weight.data, mode='fan_in')
+                nn.init.kaiming_normal_(m.weight.data, mode='fan_in')
                 if m.bias is not None:
                     m.bias.data.zero_()
 
@@ -151,8 +151,8 @@ class PWCDCNet(nn.Module):
         vgrid = Variable(grid) + flo
 
         # scale grid to [-1,1] 
-        vgrid[:,0,:,:] = 2.0*vgrid[:,0,:,:]/max(W-1,1)-1.0
-        vgrid[:,1,:,:] = 2.0*vgrid[:,1,:,:]/max(H-1,1)-1.0
+        vgrid[:,0,:,:] = 2.0*vgrid[:,0,:,:].clone()/max(W-1,1)-1.0
+        vgrid[:,1,:,:] = 2.0*vgrid[:,1,:,:].clone()/max(H-1,1)-1.0
 
         vgrid = vgrid.permute(0,2,3,1)
         output = nn.functional.grid_sample(x, vgrid)
@@ -259,7 +259,7 @@ class PWCDCNet(nn.Module):
         flow2 = self.predict_flow2(x)
  
         x = self.dc_conv4(self.dc_conv3(self.dc_conv2(self.dc_conv1(x))))
-        flow2 += self.dc_conv7(self.dc_conv6(self.dc_conv5(x)))
+        flow2 = flow2 + self.dc_conv7(self.dc_conv6(self.dc_conv5(x)))
         
         flow0_enlarge = nn.UpsamplingBilinear2d(size = (H, W))(flow2 * 4.0)
         flow1_enlarge = nn.UpsamplingBilinear2d(size = (H // 2, W // 2))(flow3 * 4.0)
@@ -389,8 +389,8 @@ class PWCDCNet_old(nn.Module):
         vgrid = Variable(grid) + flo
 
         # scale grid to [-1,1] 
-        vgrid[:,0,:,:] = 2.0*vgrid[:,0,:,:]/max(W-1,1)-1.0
-        vgrid[:,1,:,:] = 2.0*vgrid[:,1,:,:]/max(H-1,1)-1.0
+        vgrid[:,0,:,:] = 2.0*vgrid[:,0,:,:].clone()/max(W-1,1)-1.0
+        vgrid[:,1,:,:] = 2.0*vgrid[:,1,:,:].clone()/max(H-1,1)-1.0
 
         vgrid = vgrid.permute(0,2,3,1)        
         output = nn.functional.grid_sample(x, vgrid)
@@ -482,7 +482,7 @@ class PWCDCNet_old(nn.Module):
         flow2 = self.predict_flow2(x)
  
         x = self.dc_conv4(self.dc_conv3(self.dc_conv2(self.dc_conv1(x))))
-        flow2 += self.dc_conv7(self.dc_conv6(self.dc_conv5(x)))
+        flow2 = flow2 + self.dc_conv7(self.dc_conv6(self.dc_conv5(x)))
         
         if self.training:
             return flow2,flow3,flow4,flow5,flow6
