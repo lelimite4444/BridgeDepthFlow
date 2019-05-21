@@ -56,6 +56,7 @@ The `--model_name` flag allows you to choose which model you want to train on. W
 
 ## Testing
 We use the validation set of KITTI 2015 as example. The ground truth of optical flow includes occluded area.
+* You can download our pretrained models from [here](https://drive.google.com/drive/folders/1l6HLF2Dq1ObsTjdJaAPKK6NOAZDOI0Rs?usp=sharing), the final character of the model name correponds to the type of 2warp in our paper.
 * Test on optical flow
 ```shell
 python test_flow.py --data_path KITTI_PATH
