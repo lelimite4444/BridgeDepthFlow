@@ -13,7 +13,7 @@ from PIL import Image
 import matplotlib.pyplot as plt
 import cv2
 from models.networks.submodules import *
-from models.networks.resample2d_package.modules.resample2d import Resample2d
+from models.networks.resample2d_package.resample2d import Resample2d
 
 def gradient_x(img):
     gx = torch.add(img[:,:,:-1,:], -1, img[:,:,1:,:])
